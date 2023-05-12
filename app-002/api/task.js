@@ -10,8 +10,18 @@ const instance = axios.create({
 
 export const getTasks = () => instance.get("Task").then((res) => res.data);
 
+export const createTask = (task) => {
+  return instance.post("Task", task, {
+    headers: { "Content-type": "application/json" },
+  });
+};
+
 export const updateTask = (task) => {
   return instance.put(`/Task/${task.objectId}`, task, {
     headers: { "Content-Type": "application/json" },
   });
+};
+
+export const removeTask = (taskId) => {
+  return instance.delete(`/Task/${taskId}`);
 };
